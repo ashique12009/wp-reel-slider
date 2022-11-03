@@ -160,9 +160,7 @@ class Wp_Reel_Slider_Public {
                 	$html .= '</a>';
                 	
 					if ($post_title_setting !== 'no') {
-						$html .= '<a class="anchor text-center" href="' . $post_link . '">';
-							$html .= '<h3 class="post-title fw-bold text-center mb-2">' . get_the_title( $result->ID ) . '</h3>';
-						$html .= '</a>';
+						$html .= '<a class="anchor text-center dis-block no-uderline-anchor" href="' . $post_link . '">' . get_the_title( $result->ID ) . '</a>';
 					}
 
                 $html .= '</div>';

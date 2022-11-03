@@ -111,6 +111,11 @@ class Wp_Reel_Slider {
 		require_once WP_REEL_SLIDER_PLUGIN_DIR . 'includes/class-wp-reel-slider-i18n.php';
 
 		/**
+		 * Load helper trait
+		 */
+		require_once WP_REEL_SLIDER_PLUGIN_DIR . 'admin/trait-wp-reel-slider-helper.php';
+
+		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once WP_REEL_SLIDER_PLUGIN_DIR . 'admin/class-wp-reel-slider-admin.php';
@@ -155,6 +160,9 @@ class Wp_Reel_Slider {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'wprs_admin_settings_option_menu');
+		$this->loader->add_action( 'admin_notices', $plugin_admin, 'wprs_admin_notice_for_settings');
 
 	}
 

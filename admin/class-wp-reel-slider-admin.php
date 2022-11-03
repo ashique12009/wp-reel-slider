@@ -22,6 +22,8 @@
  */
 class Wp_Reel_Slider_Admin {
 
+	use Wp_Reel_Slider_Helper_Trait;
+
 	/**
 	 * The ID of this plugin.
 	 *
@@ -73,7 +75,7 @@ class Wp_Reel_Slider_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, WP_REEL_SLIDER_PLUGIN_URL . 'css/wp-reel-slider-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, WP_REEL_SLIDER_PLUGIN_URL . 'admin/css/wp-reel-slider-admin.css', array(), $this->version, 'all' );
 
 	}
 
@@ -96,8 +98,60 @@ class Wp_Reel_Slider_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, WP_REEL_SLIDER_PLUGIN_URL . 'js/wp-reel-slider-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, WP_REEL_SLIDER_PLUGIN_URL . 'admin/js/wp-reel-slider-admin.js', array( 'jquery' ), $this->version, false );
 
+	}
+
+	/**
+	 * Set settings menu
+	 */
+	public function wprs_admin_settings_option_menu() {
+		$page_title = 'Wp reel slider settings';
+		$menu_title = 'Wp reel slider settings';
+		$capability = 'manage_options';
+		$menu_slug = 'wp-reel-slider-settings';
+		add_options_page(
+			$page_title,
+			$menu_title,
+			$capability,
+			$menu_slug,
+			[$this, 'wprs_admin_settings_page_display']
+		);
+	}
+
+	/**
+	 * Admin settings page display
+	 */
+	public function wprs_admin_settings_page_display() {
+		$view = isset( $_GET['view'] ) ? $_GET['view'] : '';
+		if ($view == '')
+			include 'partials/wp-reel-slider-admin-display.php';
+	}
+
+	/**
+	 * Show admin notice for settings success or error
+	 */
+	public function wprs_admin_notice_for_settings() {
+
+		$screen = get_current_screen();
+
+		if ($screen->id === 'settings_page_wp-reel-slider-settings') {
+			$error = ( isset( $_GET['error'] ) ) ? sanitize_text_field( $_GET['error'] ) : '';
+			if ($error === '1') {
+				?>
+				<div class="notice notice-error is-dismissible">
+					<p><?php _e( 'Set psot type!', WP_REEL_SLIDER_TEXT_DOMAIN ); ?></p>
+				</div>
+				<?php 
+			}
+			elseif ($error === '2') {
+				?>
+				<div class="notice notice-success is-dismissible">
+					<p><?php _e( 'Settings saved!', WP_REEL_SLIDER_TEXT_DOMAIN ); ?></p>
+				</div>
+				<?php 
+			}
+		}
 	}
 
 }

@@ -13,3 +13,11 @@
 .ashique-wp-reel-slider-flex-wrapper .ashique-custom-card-item .ashique-image-anchor{
     display: block;
 }
+
+/* Common css */
+.dis-block{
+    display: block;
+}
+.no-uderline-anchor{
+    text-decoration: none;
+}
