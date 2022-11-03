@@ -45,7 +45,7 @@ define( 'WP_REEL_SLIDER_TEXT_DOMAIN', 'wp-reel-slider' );
  * This action is documented in includes/class-wp-reel-slider-activator.php
  */
 function activate_wp_reel_slider() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-reel-slider-activator.php';
+	require_once WP_REEL_SLIDER_PLUGIN_DIR . 'includes/class-wp-reel-slider-activator.php';
 	Wp_Reel_Slider_Activator::activate();
 }
 
@@ -54,7 +54,7 @@ function activate_wp_reel_slider() {
  * This action is documented in includes/class-wp-reel-slider-deactivator.php
  */
 function deactivate_wp_reel_slider() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-reel-slider-deactivator.php';
+	require_once WP_REEL_SLIDER_PLUGIN_DIR . 'includes/class-wp-reel-slider-deactivator.php';
 	Wp_Reel_Slider_Deactivator::deactivate();
 }
 
@@ -65,7 +65,7 @@ register_deactivation_hook( __FILE__, 'deactivate_wp_reel_slider' );
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-wp-reel-slider.php';
+require WP_REEL_SLIDER_PLUGIN_DIR . 'includes/class-wp-reel-slider.php';
 
 /**
  * Begins execution of the plugin.
