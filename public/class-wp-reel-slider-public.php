@@ -100,4 +100,53 @@ class Wp_Reel_Slider_Public {
 
 	}
 
+	/**
+	 * Add shortcode
+	 */
+	public function wprs_add_shortcode() {
+		add_shortcode( 'show_wp_reel_slider', [$this, 'wprs_shortcode_output'] );
+	}
+
+	/**
+	 * Shortcode output
+	 */
+	public function wprs_shortcode_output() {
+
+		// How many posts to show
+		$post_type_setting = get_option( 'wprs_post_type', 'post' );
+		$post_title_setting = get_option( 'wprs_post_title', 'no' );
+
+		$args = [
+			'post_type' => $post_type_setting
+		];
+
+		$results = get_posts( $args );
+
+		$html = "<div class='ashique-wp-reel-slider-wrapper'>";
+		if ($results) {
+			foreach ($results as $result) {
+				$post_link = get_the_permalink( $result->ID );
+				$default_image_url = WP_REEL_SLIDER_PLUGIN_URL . 'public/images/default-image.png';
+				$post_thumbnail_url = get_the_post_thumbnail_url( $result->ID, 'medium' ) ? get_the_post_thumbnail_url( $result->ID, 'medium' ) : $default_image_url;
+
+				$html .= '<div class="ashique-custom-card sub-article">';
+                $html .= '<div class="ahique-card-feaured-image-container card-image card-feature-img trending-posts-img">';
+                $html .= '<a class="ashique-image-anchor" href="' . $post_link . '">';
+                $html .= '<img src="' . $post_thumbnail_url . '" alt="article image" class="ashique-img img-fluid wp-post-image">';
+                $html .= '</a>';
+                $html .= '</div>';
+                $html .= '<div class="ashique-card-content card-content">';
+                $html .= '<a class="anchor" href="' . $post_link . '">';
+				if ($post_title_setting !== 'no')
+                	$html .= '<h3 class="post-title fw-bold text-center mb-2">' . get_the_title( $result->ID ) . '</h3>';
+            	$html .= '</a>';
+                $html .= '</div>';
+                $html .= '</div>'; 
+			}
+		}
+		$html .= "</div>";
+
+		return $html;
+	}
+
 }
