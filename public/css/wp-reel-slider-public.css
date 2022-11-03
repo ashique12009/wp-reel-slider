@@ -2,3 +2,15 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+
+.ashique-wp-reel-slider-flex-wrapper{
+    /* display: flex;
+    justify-content: space-evenly; */
+    overflow: hidden;
+}
+.ashique-wp-reel-slider-flex-wrapper .ashique-custom-card-item{
+    float: left;
+}
+.ashique-wp-reel-slider-flex-wrapper .ashique-custom-card-item .ashique-image-anchor{
+    display: block;
+}
