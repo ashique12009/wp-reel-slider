@@ -110,7 +110,9 @@ class Wp_Reel_Slider_Public {
 				jQuery('.marquee').marquee({
 					duration: 7000,
 					pauseOnHover: true,
-					duplicated: true
+					duplicated: true,
+					gap: 20,
+					startVisible: true
 				});
 			});
 		</script>
@@ -132,6 +134,12 @@ class Wp_Reel_Slider_Public {
 		// How many posts to show
 		$post_type_setting = get_option( 'wprs_post_type', 'post' );
 		$post_title_setting = get_option( 'wprs_post_title', 'no' );
+		$post_featured_image_setting = get_option( 'wprs_post_featured_iamge_size', 'medium' );
+
+		if ($post_featured_image_setting === 'thumbnail')
+			$default_image_url = WP_REEL_SLIDER_PLUGIN_URL . 'public/images/default-image-thumbnail.png';
+		elseif ($post_featured_image_setting === 'medium')
+			$default_image_url = WP_REEL_SLIDER_PLUGIN_URL . 'public/images/default-image.png';
 
 		$args = [
 			'post_type' => $post_type_setting,
@@ -143,13 +151,12 @@ class Wp_Reel_Slider_Public {
 		$html = "<div class='ashique-wp-reel-slider-flex-wrapper marquee'>";
 		if ($results) {
 			foreach ($results as $result) {
-				$post_link = get_the_permalink( $result->ID );
-				$default_image_url = WP_REEL_SLIDER_PLUGIN_URL . 'public/images/default-image.png';
-				$post_thumbnail_url = get_the_post_thumbnail_url( $result->ID, 'medium' ) ? get_the_post_thumbnail_url( $result->ID, 'medium' ) : $default_image_url;
+				$post_link = get_the_permalink( $result->ID );				
+				$post_thumbnail_url = get_the_post_thumbnail_url( $result->ID, $post_featured_image_setting ) ? get_the_post_thumbnail_url( $result->ID, $post_featured_image_setting ) : $default_image_url;
 				
                 $html .= '<div class="ashique-custom-card-item">';
                 	$html .= '<a class="ashique-image-anchor" href="' . $post_link . '">';
-                		$html .= '<img src="' . $post_thumbnail_url . '" alt="article image" class="ashique-img img-fluid wp-post-image">';
+                		$html .= '<img src="' . $post_thumbnail_url . '" alt="article image" class="ashique-featured-img">';
                 	$html .= '</a>';
                 	
 					if ($post_title_setting !== 'no') {

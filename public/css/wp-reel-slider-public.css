@@ -4,12 +4,11 @@
  */
 
 .ashique-wp-reel-slider-flex-wrapper{
-    /* display: flex;
-    justify-content: space-evenly; */
     overflow: hidden;
 }
 .ashique-wp-reel-slider-flex-wrapper .ashique-custom-card-item{
     float: left;
+    margin-left: 20px;
 }
 .ashique-wp-reel-slider-flex-wrapper .ashique-custom-card-item .ashique-image-anchor{
     display: block;
