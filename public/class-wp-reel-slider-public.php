@@ -135,6 +135,7 @@ class Wp_Reel_Slider_Public {
 		$post_type_setting = get_option( 'wprs_post_type', 'post' );
 		$post_title_setting = get_option( 'wprs_post_title', 'no' );
 		$post_featured_image_setting = get_option( 'wprs_post_featured_iamge_size', 'medium' );
+		$post_image_number_setting = get_option( 'wprs_image_number', -1 );
 
 		if ($post_featured_image_setting === 'thumbnail')
 			$default_image_url = WP_REEL_SLIDER_PLUGIN_URL . 'public/images/default-image-thumbnail.png';
@@ -144,7 +145,7 @@ class Wp_Reel_Slider_Public {
 		$args = [
 			'post_type' => $post_type_setting,
 			'post_status' => 'publish',
-			'numberposts' => -1
+			'numberposts' => $post_image_number_setting
 		];
 
 		$results = get_posts( $args );

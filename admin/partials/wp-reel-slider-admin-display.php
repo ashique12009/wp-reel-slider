@@ -36,8 +36,11 @@ if (!defined('ABSPATH')) {
             $need_title_setting = sanitize_text_field( $_POST['need_title_setting'] );
             update_option( 'wprs_post_title', ($need_title_setting == '') ? 'no' : $need_title_setting );
             
-            $post_featured_iamge_size_setting = sanitize_text_field( $_POST['post_featured_iamge_size_setting'] );            
+            $post_featured_iamge_size_setting = sanitize_text_field( $_POST['post_featured_iamge_size_setting'] );
             update_option( 'wprs_post_featured_iamge_size', ($post_featured_iamge_size_setting == '') ? 'medium' : $post_featured_iamge_size_setting);
+            
+            $image_number_setting = sanitize_text_field( $_POST['image_number_setting'] );            
+            update_option( 'wprs_image_number', ($image_number_setting == '') ? -1 : $image_number_setting);
 
             header('Location: ' . admin_url( 'options-general.php?page=wp-reel-slider-settings&error=2' ));
         }
@@ -48,9 +51,10 @@ if (!defined('ABSPATH')) {
 <div class="wrap">
     <h1>WP reel slider settings</h1>
     <?php
-        $post_type_setting = get_option( 'wprs_post_type' );
-        $need_title_setting = get_option( 'wprs_post_title' );
-        $post_featured_iamge_size_setting = get_option( 'wprs_post_featured_iamge_size' );
+        $post_type_setting = esc_html( get_option( 'wprs_post_type', 'post' ) );
+        $need_title_setting = esc_html( get_option( 'wprs_post_title', 'no' ) );
+        $post_featured_iamge_size_setting = esc_html( get_option( 'wprs_post_featured_iamge_size', 'medium' ) );
+        $image_number_setting = esc_html( get_option( 'wprs_image_number', -1 ) );
     ?>
     <form method="post" action="">
         <?php wp_nonce_field( 'wp-reel-slider-settings-nonce', 'wp_reel_slider_settings_nonce_field' ); ?>
@@ -83,6 +87,13 @@ if (!defined('ABSPATH')) {
                     <td>
                         <input type="radio" name="post_featured_iamge_size_setting" value="medium" <?php echo ($post_featured_iamge_size_setting == 'medium') ? 'checked="checked"' : '';?> /> Medium ( 300 X 300 ) 
                         <input type="radio" name="post_featured_iamge_size_setting" value="thumbnail" <?php echo ($post_featured_iamge_size_setting == 'thumbnail') ? 'checked="checked"' : '';?> /> Thumbnail ( 150 X 150 )
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label for="ashique-most-read-post-post-number"><?php _e( 'How many images do you want to show', WP_REEL_SLIDER_TEXT_DOMAIN ); ?>: </label></th>
+                    <td>
+                        <input type="number" id="ashique-most-read-post-post-number" name="image_number_setting" class="regular-text" value="<?php echo $image_number_setting;?>">
+                        <small class="dis-block">-1 means show all images from that mentioned post type</small>
                     </td>
                 </tr>
             </tbody>
