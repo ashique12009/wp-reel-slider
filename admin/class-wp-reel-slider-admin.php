@@ -106,8 +106,8 @@ class Wp_Reel_Slider_Admin {
 	 * Set settings menu
 	 */
 	public function wprs_admin_settings_option_menu() {
-		$page_title = 'Wp reel slider settings';
-		$menu_title = 'Wp reel slider settings';
+		$page_title = 'Wp reel slider';
+		$menu_title = 'Wp reel slider';
 		$capability = 'manage_options';
 		$menu_slug = 'wp-reel-slider-settings';
 		add_options_page(

@@ -30,8 +30,15 @@ if (!defined('ABSPATH')) {
             header('Location: ' . admin_url( 'options-general.php?page=wp-reel-slider-settings&error=1' ));
         }
         else {
-            update_option( 'wprs_post_type', sanitize_text_field( $_POST['post_type_setting'] ) );
-            update_option( 'wprs_post_title', sanitize_text_field( $_POST['need_title_setting'] ) );
+            $post_type_setting = sanitize_text_field( $_POST['post_type_setting'] );
+            update_option( 'wprs_post_type', ($post_type_setting == '') ? 'post' : $post_type_setting );
+
+            $need_title_setting = sanitize_text_field( $_POST['need_title_setting'] );
+            update_option( 'wprs_post_title', ($need_title_setting == '') ? 'no' : $need_title_setting );
+            
+            $post_featured_iamge_size_setting = sanitize_text_field( $_POST['post_featured_iamge_size_setting'] );            
+            update_option( 'wprs_post_featured_iamge_size', ($post_featured_iamge_size_setting == '') ? 'medium' : $post_featured_iamge_size_setting);
+
             header('Location: ' . admin_url( 'options-general.php?page=wp-reel-slider-settings&error=2' ));
         }
     }
@@ -40,6 +47,11 @@ if (!defined('ABSPATH')) {
 
 <div class="wrap">
     <h1>WP reel slider settings</h1>
+    <?php
+        $post_type_setting = get_option( 'wprs_post_type' );
+        $need_title_setting = get_option( 'wprs_post_title' );
+        $post_featured_iamge_size_setting = get_option( 'wprs_post_featured_iamge_size' );
+    ?>
     <form method="post" action="">
         <?php wp_nonce_field( 'wp-reel-slider-settings-nonce', 'wp_reel_slider_settings_nonce_field' ); ?>
         <table class="form-table">
@@ -53,19 +65,24 @@ if (!defined('ABSPATH')) {
                         <?php if (count($desire_post_types) > 0) : ?>
                             <select name="post_type_setting">
                                 <?php foreach ($desire_post_types as $pt) : ?>
-                                    <option value="<?php echo $pt;?>"><?php echo $pt;?></option>
+                                    <option value="<?php echo $pt;?>" <?php echo ($post_type_setting == $pt) ? ' selected="selected"': '';?>><?php echo $pt;?></option>
                                 <?php endforeach; ?>
                             </select>
                         <?php endif; ?>
                     </td>
                 </tr>
-            </tbody>
-            <tbody>
                 <tr>
                     <th scope="row"><label for="ashique-most-read-post-days-number"><?php _e( 'Do you want title bottom of featured image in slider', WP_REEL_SLIDER_TEXT_DOMAIN ); ?>: </label></th>
                     <td>
-                        <input type="radio" name="need_title_setting" value="yes" /> Yes 
-                        <input type="radio" name="need_title_setting" value="no" /> No 
+                        <input type="radio" name="need_title_setting" value="yes" <?php echo ($need_title_setting == 'yes') ? 'checked="checked"' : '';?> /> Yes 
+                        <input type="radio" name="need_title_setting" value="no" <?php echo ($need_title_setting == 'no') ? 'checked="checked"' : '';?> /> No 
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label for="ashique-most-read-post-days-number"><?php _e( 'Slider image size', WP_REEL_SLIDER_TEXT_DOMAIN ); ?>: </label></th>
+                    <td>
+                        <input type="radio" name="post_featured_iamge_size_setting" value="medium" <?php echo ($post_featured_iamge_size_setting == 'medium') ? 'checked="checked"' : '';?> /> Medium ( 300 X 300 ) 
+                        <input type="radio" name="post_featured_iamge_size_setting" value="thumbnail" <?php echo ($post_featured_iamge_size_setting == 'thumbnail') ? 'checked="checked"' : '';?> /> Thumbnail ( 150 X 150 )
                     </td>
                 </tr>
             </tbody>

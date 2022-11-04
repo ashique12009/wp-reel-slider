@@ -143,7 +143,8 @@ class Wp_Reel_Slider_Public {
 
 		$args = [
 			'post_type' => $post_type_setting,
-			'post_status' => 'publish'
+			'post_status' => 'publish',
+			'numberposts' => -1
 		];
 
 		$results = get_posts( $args );
@@ -160,7 +161,7 @@ class Wp_Reel_Slider_Public {
                 	$html .= '</a>';
                 	
 					if ($post_title_setting !== 'no') {
-						$html .= '<a class="anchor text-center dis-block no-uderline-anchor" href="' . $post_link . '">' . get_the_title( $result->ID ) . '</a>';
+						$html .= '<a class="anchor text-center dis-block no-uderline-anchor black-text" href="' . $post_link . '">' . get_the_title( $result->ID ) . '</a>';
 					}
 
                 $html .= '</div>';
