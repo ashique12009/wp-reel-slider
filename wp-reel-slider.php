@@ -13,12 +13,12 @@
  * @package           Wp_Reel_Slider
  *
  * @wordpress-plugin
- * Plugin Name:       WP Reel Slider
+ * Plugin Name:       Ashique Reel Slider
  * Plugin URI:        https://ashique12009.blogspot.com
  * Description:       A reel type scrolling post feature image slider. Which will flow right to left infinity type like html marque.
  * Version:           1.0.0
  * Author:            Khandoker Ashique Mahamud
- * Author URI:        https://ashique12009.blogspot.com
+ * Author URI:        https://mathrules12009.50webs.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       wp-reel-slider
