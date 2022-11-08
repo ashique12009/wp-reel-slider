@@ -123,7 +123,8 @@ class Wp_Reel_Slider_Admin {
 	 * Admin settings page display
 	 */
 	public function wprs_admin_settings_page_display() {
-		$view = isset( $_GET['view'] ) ? $_GET['view'] : '';
+		$view = sanitize_text_field( $_GET['view'] );
+		$view = isset( $view ) ? $view : '';
 		if ($view == '')
 			include 'partials/wp-reel-slider-admin-display.php';
 	}

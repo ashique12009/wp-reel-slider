@@ -69,7 +69,7 @@ if (!defined('ABSPATH')) {
                         <?php if (count($desire_post_types) > 0) : ?>
                             <select name="post_type_setting">
                                 <?php foreach ($desire_post_types as $pt) : ?>
-                                    <option value="<?php echo $pt;?>" <?php echo ($post_type_setting == $pt) ? ' selected="selected"': '';?>><?php echo $pt;?></option>
+                                    <option value="<?php echo esc_attr( $pt );?>" <?php echo ($post_type_setting == $pt) ? ' selected="selected"': '';?>><?php echo esc_html( $pt );?></option>
                                 <?php endforeach; ?>
                             </select>
                         <?php endif; ?>
@@ -92,7 +92,7 @@ if (!defined('ABSPATH')) {
                 <tr>
                     <th scope="row"><label for="ashique-most-read-post-post-number"><?php _e( 'How many images do you want to show', WP_REEL_SLIDER_TEXT_DOMAIN ); ?>: </label></th>
                     <td>
-                        <input type="number" id="ashique-most-read-post-post-number" name="image_number_setting" class="regular-text" value="<?php echo $image_number_setting;?>">
+                        <input type="number" id="ashique-most-read-post-post-number" name="image_number_setting" class="regular-text" value="<?php echo esc_html( $image_number_setting );?>">
                         <small class="dis-block">-1 means show all images from that mentioned post type</small>
                     </td>
                 </tr>
