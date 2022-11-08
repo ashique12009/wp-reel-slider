@@ -3,7 +3,7 @@ Contributors: ashique12009
 Donate link: https://example.com/
 Tags: wp-reel-slider, reel-slider, slider, post-slider
 Requires at least: 4.7
-Tested up to: 6.0.2
+Tested up to: 6.1
 Stable tag: 1.0.0
 Requires PHP: 7.0
 License: GPLv2 or later
