@@ -49,7 +49,7 @@ if (!defined('ABSPATH')) {
 ?>
 
 <div class="wrap">
-    <h1>WP reel slider settings</h1>
+    <h1>Reel slider settings</h1>
     <?php
         $post_type_setting = esc_html( get_option( 'wprs_post_type', 'post' ) );
         $need_title_setting = esc_html( get_option( 'wprs_post_title', 'no' ) );
