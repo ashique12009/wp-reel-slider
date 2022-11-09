@@ -1,4 +1,4 @@
-=== WP Reel Slider ===
+=== Ashique Reel Slider ===
 Contributors: ashique12009
 Donate link: https://example.com/
 Tags: wp-reel-slider, reel-slider, slider, post-slider
