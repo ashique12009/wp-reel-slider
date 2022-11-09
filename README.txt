@@ -15,7 +15,7 @@ A reel type scrolling post feature image slider. Which will flow right to left i
 
 A reel type scrolling post feature image slider. Which will flow right to left infinity type like html marque by shortcode. 
 
-The shortcode is: [show_wp_reel_slider]
+The shortcode is: [show_ashique_reel_slider]
 
 You can get settings, from admin main menu settings -> Wp reel slider.
 
