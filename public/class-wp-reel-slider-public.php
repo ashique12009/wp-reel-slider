@@ -123,7 +123,7 @@ class Wp_Reel_Slider_Public {
 	 * Add shortcode
 	 */
 	public function wprs_add_shortcode() {
-		add_shortcode( 'show_wp_reel_slider', [$this, 'wprs_shortcode_output'] );
+		add_shortcode( 'show_ashique_reel_slider', [$this, 'wprs_shortcode_output'] );
 	}
 
 	/**
