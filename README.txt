@@ -27,6 +27,8 @@ You can set image size, right now you will be able set two types of size: medium
 
 You can set which post type's image will be shown in slider.
 
+How to use video: https://youtu.be/JKWlbNArAMA
+
 == Frequently Asked Questions ==
 
 == Screenshots ==
