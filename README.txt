@@ -39,8 +39,7 @@ How to use video: https://youtu.be/JKWlbNArAMA
 == Changelog ==
 
 = 1.0 =
-* A change since the previous version.
-* Another change.
+* Initial release
 
 == Upgrade Notice ==
 
